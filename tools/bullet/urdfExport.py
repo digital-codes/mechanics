@@ -11,7 +11,7 @@ def process_element(element, data):
             else:
                 element.set(key, value)  # Fix: Use 'element.set()' instead of 'element.text'
     else:
-        element.text = str(data)
+        raise("Text: invalid")
     return element
 
 
@@ -45,18 +45,16 @@ object_data = [
             "visual": {
                 "geometry": {
                     "cylinder": {"radius": "1", "length": "0.1"}
-                }
-            },
+                },
             "material": {"name": "gray", "color": {"rgba": "0 0 0 .5"}},
+            }
         }
     }
 ]
 
 urdf = create_xml(object_data, "rob1")
-# ET.dump(urdf)
 urdf_string = ET.tostring(urdf.getroot()).decode()
 urdf_string = re.sub(r"(<(?!/))", r"\n\1", urdf_string)
-#urdf_string = re.sub(r"(<)", r"\n\1", urdf_string)
 print(urdf_string)
 filename = "test.urdf"
 with open(filename, "w") as f:
