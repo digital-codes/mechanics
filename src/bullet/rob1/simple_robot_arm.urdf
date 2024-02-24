@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot name="simple_elbow_arm">
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.1" length="0.2"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Upper Arm Link -->
+  <link name="upper_arm">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.4 0.1"/>
+      </geometry>
+	   <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Lower Arm Link -->
+  <link name="lower_arm">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.7 0.1"/>
+      </geometry>
+	   <material name="green">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <!-- Joints -->
+  <!-- Base to Upper Arm Joint -->
+  <joint name="base_to_upper_arm" type="revolute">
+    <parent link="base_link"/>
+    <child link="upper_arm"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.57" upper="1.57" effort="1000" velocity="0.5"/>
+  </joint>
+  <!-- Elbow Joint -->
+  <joint name="elbow_joint" type="revolute">
+    <parent link="upper_arm"/>
+    <child link="lower_arm"/>
+    <origin xyz="0.05 0.2 0" rpy="0 0 0"/> <!-- Adjusted to the end of the upper arm -->
+    <axis xyz="1 0 0"/> <!-- Rotate around the Y-axis -->
+    <limit lower="-1.57" upper="1.57" effort="1000" velocity="1.0"/>
+  </joint>
+
+
+
+
+</robot>
+
