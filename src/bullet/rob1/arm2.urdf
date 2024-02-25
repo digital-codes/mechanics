@@ -11,6 +11,11 @@
         <color rgba="1 0 0 1"/>
       </material>
     </visual>
+      <inertial>
+      <mass value=".1" />
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <inertia ixx="0.008333333333333335" ixy="0" ixz="0" iyy="0.043333333333333335" iyz="0" izz="0.04833333333333334" />
+    </inertial>
   </link>
 
   <link name="arm1">
@@ -23,6 +28,11 @@
         <color rgba="0 0 1 1"/>
       </material>
     </visual>
+      <inertial>
+      <mass value="2" />
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <inertia ixx="0.008333333333333335" ixy="0" ixz="0" iyy="0.043333333333333335" iyz="0" izz="0.04833333333333334" />
+    </inertial>
   </link>
 
   <link name="arm2">
@@ -35,6 +45,11 @@
         <color rgba="0 1 0 1"/>
       </material>
     </visual>
+      <inertial>
+      <mass value="2" />
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <inertia ixx="0.008333333333333335" ixy="0" ixz="0" iyy="0.043333333333333335" iyz="0" izz="0.04833333333333334" />
+    </inertial>
   </link>
 
   <link name="arm3">
@@ -46,6 +61,11 @@
 	   <material name="red">
         <color rgba="1 0 0 1"/>
       </material>
+      <inertial>
+      <mass value="2" />
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <inertia ixx="0.008333333333333335" ixy="0" ixz="0" iyy="0.043333333333333335" iyz="0" izz="0.04833333333333334" />
+    </inertial>
     </visual>
   </link>
 
@@ -72,7 +92,7 @@
     <child link="arm3"/>
     <origin xyz="2.0 0. 0" rpy="0 0 0"/> 
     <axis xyz="0 1 0"/> 
-    <limit lower="-1.57" upper="1.57" effort="1000" velocity="1.0"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0"/>
   </joint>
 <!--
   <joint name="joint4" type="revolute">
