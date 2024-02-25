@@ -16,7 +16,7 @@ planeId = p.loadURDF("plane.urdf")
 
 # Load the robot arm URDF
 # Ensure this path is correct for your setup
-robotArmId = p.loadURDF("arm2.urdf", [0, 0, 0], useFixedBase=1)
+robotArmId = p.loadURDF("arm2.urdf", [0, 0, 0], useFixedBase=0)
 
 
 # Set the camera position and orientation
@@ -50,26 +50,35 @@ image = Image.fromarray(np.array(rgbImg))
 # Save the image
 image.save(first_image_file)
 
+#p.setJointMotorControl2(robotArmId, 0, p.VELOCITY_CONTROL, targetVelocity=0, force=0)
+p.setJointMotorControl2(robotArmId, 1, p.VELOCITY_CONTROL, targetVelocity=1, force=0)
+p.setJointMotorControl2(robotArmId, 2, p.VELOCITY_CONTROL, targetVelocity=1, force=0)
+#p.setJointMotorControl2(robotArmId, 3, p.VELOCITY_CONTROL, targetVelocity=0, force=0)
+
 if True:
     # Run the simulation
-    for i in range(3000):
+    for i in range(5000):
         p.stepSimulation()
 
-        # control joint rotations        
-        shoulderPosition = math.sin(i * 0.01) * -0.3
-        p.setJointMotorControl2(robotArmId, 0, p.POSITION_CONTROL, targetPosition=shoulderPosition)
-        
-        # Control the base-to-upper arm joint (shoulder-like motion)
-        shoulderPosition = math.sin(i * 0.02) * 0.5
-        p.setJointMotorControl2(robotArmId, 1, p.POSITION_CONTROL, targetPosition=shoulderPosition)
-        
-        # Control the upper-to-lower arm joint (elbow-like motion)
-        # The elbow's motion is typically dependent on the shoulder's position or a separate control scheme
-##        if i < 1500:
-##            elbowPosition = math.fabs(math.sin(i * 0.02))  # Simple example to flex and extend the elbow
-##        else:
-##            elbowPosition = math.fabs(math.sin(i * 0.01))  # Change the rate for demonstration
-##        p.setJointMotorControl2(robotArmId, 2, p.POSITION_CONTROL, targetPosition=elbowPosition)
+        if (i < 3000):
+            # control joint rotations        
+            shoulderPosition = math.sin(i * 0.02) * -.3
+            p.setJointMotorControl2(robotArmId, 0, p.POSITION_CONTROL, targetPosition=shoulderPosition)
+            
+            # Control the base-to-upper arm joint (shoulder-like motion)
+            armPosition = math.sin(i * 0.02) * 0.3
+            #p.setJointMotorControl2(robotArmId, 1, p.POSITION_CONTROL, targetPosition=armPosition)
+            
+            # Control the upper-to-lower arm joint (elbow-like motion)
+            # The elbow's motion is typically dependent on the shoulder's position or a separate control scheme
+    ##        if i < 1500:
+    ##            elbowPosition = math.fabs(math.sin(i * 0.02))  # Simple example to flex and extend the elbow
+    ##        else:
+    ##            elbowPosition = math.fabs(math.sin(i * 0.01))  # Change the rate for demonstration
+    ##        p.setJointMotorControl2(robotArmId, 2, p.POSITION_CONTROL, targetPosition=elbowPosition)
+    
+        else:
+            p.setJointMotorControl2(robotArmId, 0, p.VELOCITY_CONTROL, targetVelocity=0, force=0)
         
         time.sleep(1./240.)
 
