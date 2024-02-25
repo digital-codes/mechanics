@@ -16,6 +16,12 @@
       <mass value="0"/>
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
     </inertial>
+    <collision>
+      <origin xyz="0 0 .5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="1" radius="0.1"/>
+      </geometry>
+    </collision>
   </link>
 
   <link name="arm">
@@ -33,6 +39,12 @@
       <mass value="10"/>
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
     </inertial>
+    <collision>
+      <origin xyz="0 0 .5" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="1" radius="0.1"/>
+      </geometry>
+    </collision>
   </link>
 
   <joint name="joint2" type="continuous">
