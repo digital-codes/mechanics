@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot name="simple_arm">
 
+
   <link name="base">
     <visual>
       <origin xyz="0 0 .5" rpy="0 0 0"/>
@@ -81,7 +82,7 @@
   <joint name="joint2" type="continuous">
     <parent link="arm"/>
     <child link="hand"/>
-    <origin xyz="0 0 1" rpy="0 1 0"/>
+    <origin xyz="0 0 1" rpy="0 -1.57 0"/>
     <dynamics damping="1.0" friction="0.0"/>
     <axis xyz="0 1 0"/>
   </joint>
