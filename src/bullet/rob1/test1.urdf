@@ -47,11 +47,42 @@
     </collision>
   </link>
 
-  <joint name="joint2" type="continuous">
+  <link name="hand">
+    <visual>
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length=".4" radius="0.06"/>
+      </geometry>
+      <material name="green">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0.2" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
+    </inertial>
+    <collision>
+      <origin xyz="0 0 .2" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length=".4" radius="0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint1" type="continuous">
     <parent link="base"/>
     <child link="arm"/>
     <origin xyz="0 0 1" rpy="0 1.57 0"/>
     <dynamics damping="0.0" friction="0.0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="joint2" type="continuous">
+    <parent link="arm"/>
+    <child link="hand"/>
+    <origin xyz="0 0 1" rpy="0 1 0"/>
+    <dynamics damping="1.0" friction="0.0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
